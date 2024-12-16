@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="table-container"> 
         <table class="table">
             <thead>
                 <tr>
@@ -40,25 +40,45 @@ const filtered = computed(() => {
 </script>
 
 <style scoped>
-.table {
+.table-container {
+    display: flex;
+    justify-content: center;
     width: 100%;
+}
+
+.table {
+    width: 50%;
     margin-bottom: 1rem;
     color: #212529;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #dee2e6;
 }
-th{
-    background-color: #f8f9fa;
-    color: #212529;
-    border: 1px solid #dee2e6;
+
+.table th, .table td {
     padding: 0.75rem;
     vertical-align: top;
-}
-td{
     border: 1px solid #dee2e6;
-    padding: 0.75rem;
-    vertical-align: top;
 }
 
+.table thead th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #e9ecef;
+}
+
+.table tbody tr:hover {
+    background-color: #d1ecf1;
+}
+
+.table tbody td {
+    text-align: center;
+}
 </style>
