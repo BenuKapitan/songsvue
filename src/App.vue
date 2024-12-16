@@ -1,10 +1,10 @@
 <template>
   <div>
-      <select name="artists" id="artists" @change="artistSelected">
+      <select name="eloadok" id="eloadok" @change="artistSelected">
         <option value="null"></option>
-        <option v-for="artist in artistData" :key="artist.id" :value="artist._id">{{ artist.artist }}</option>
+        <option v-for="a in artistData" :key="a.id" :value="a._id">{{ a.artist }}</option>
       </select>
-      <sortedTable v-if="selectedArtist != null" :artistId="selectedArtist"></sortedTable>
+      <sortedTable v-if="selected != null" :artistId="selected"></sortedTable>
   </div>
   </template>
   
@@ -13,11 +13,11 @@
   import { ref } from 'vue';
   import sortedTable from './components/sortedTable.vue';
 
-  const selectedArtist = ref(null);
+  const selected = ref(null);
 
   function artistSelected(event) {
-    const artistId = event.target.value
-    selectedArtist.value = artistId;
+    const artistId = event.target.value;
+    selected.value = artistId;
   }
   </script>
   
@@ -30,4 +30,9 @@
     color: #2c3e50;
     margin-top: 60px;
   }
+  select {
+    padding: 5px;
+    margin: 10px;
+  }
+
   </style>

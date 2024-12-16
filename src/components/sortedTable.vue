@@ -5,20 +5,20 @@
                 <tr>
                     <th></th>
                     <th>Title</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">BPM</th>
-                    <th scope="col">Genre</th>
+                    <th>Genre</th>
+                    <th>Time</th>
+                    <th>BPM</th>
+                    <th>Year</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="song in filtered" :key="song._id">
+                <tr v-for="s in filtered" :key="s._id">
                     <td>{{ counter++ }}</td>
-                    <td>{{ song.TITLE }}</td>
-                    <td>{{ song.GENRE }}</td>
-                    <td>{{ song.TIME }}</td>
-                    <td>{{ song.BPM }}</td>
-                    <td>{{ song.YEAR }}</td>
+                    <td>{{ s.TITLE }}</td>
+                    <td>{{ s.GENRE }}</td>
+                    <td>{{ s.TIME }}</td>
+                    <td>{{ s.BPM }}</td>
+                    <td>{{ s.YEAR }}</td>
                 </tr>
             </tbody>
         </table>
@@ -26,19 +26,39 @@
 </template>
 
 <script setup>
-    import songsData from '@/songs';
-    import {computed, defineProps} from 'vue';
-    const  props = defineProps(['artistId']);
+import songsData from '@/songs';
+import { computed, defineProps } from 'vue';
 
-    let counter = 1;
+const prop = defineProps(['artistId']);
+let counter = 1;
 
-    const filtered = computed(() => {
-        counter = 1;
-        return songsData.filter(song => song.ARTIST_ID === props.artistId);
-    });
-
-
+const filtered = computed(() => {
+    counter = 1;
+    const filtered = songsData.filter(song => song.ARTIST_ID == prop.artistId);
+    return filtered;
+});
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #dee2e6;
+}
+th{
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    vertical-align: top;
+}
+td{
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    vertical-align: top;
+}
+
 </style>
